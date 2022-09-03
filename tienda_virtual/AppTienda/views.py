@@ -24,6 +24,7 @@ def post_venta(request):
     return render (request, 'AppTienda/postventa.html')
 
 def clientes_formulario(request):
+    print('entra a la funcion')
     if request.method == 'POST':
         formulario_1 = ClientesFormulario(request.POST)
         if formulario_1.is_valid():
@@ -31,9 +32,10 @@ def clientes_formulario(request):
             clientes = Clientes (nombre=data_1['nombre'], apellido=data_1['apellido'], mail=data_1['mail'])
             clientes.save()
             return render(request, 'AppTienda/inicio.html')
-        else:
-            formulario_1 = ClientesFormulario()
-            return render(request, 'AppTienda/form_clientes.html', {'formulario': formulario_1})
+    else:
+        print('entra aqui')
+        formulario_1 = ClientesFormulario()
+        return render(request, 'AppTienda/form_clientes.html', {'formulario': formulario_1})
 
 
 # Create your views here.
