@@ -2,18 +2,20 @@
 
 {% block contenido_base %}
 
-<h1><br> Distribuidores </h1>
+<h1><br> Búsqueda de distribuidor </h1>
 
-<a href="{% url 'Formulario Distribuidor' %}">CREAR NUEVO DISTRIBUIDOR</a><br>
-<br>
-<a href="{% url 'Buscar Distribuidor' %}">BUSCAR DISTRIBUIDOR</a><br>
-
-<br><h3> Listado de distribuidores: </h3>
+{% if distribuidores %}
 
 {% for distribuidor in distribuidores %}
 
     <br><span> Nombre: {{distribuidor.nombre}} {{distribuidor.apellido}} / Zona: {{distribuidor.direccion}} </span>
 
 {% endfor %}
+
+{% else %}
+
+<h4> No hay distribuidores en tu zona </h4>
+
+{% endif %}
 
 {% endblock contenido_base %}

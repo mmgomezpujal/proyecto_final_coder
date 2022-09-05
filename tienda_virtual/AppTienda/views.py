@@ -1,3 +1,4 @@
+from configparser import ParsingError
 from http.client import HTTPResponse
 from urllib.request import HTTPRedirectHandler
 from django.shortcuts import render
@@ -13,7 +14,8 @@ def clientes(request):
 
 
 def distribuidores(request):
-    return render (request, 'AppTienda/distribuidores.html')
+    distribuidores = Distribuidores.objects.all()
+    return render(request, 'AppTienda/distribuidores.html', {'distribuidores': distribuidores})
 
 
 def inicio(request):
@@ -62,4 +64,18 @@ def postventa_formulario(request):
         return render(request, 'AppTienda/form_postventa.html', {'formulario_3': formulario_3})
 
 
-# Create your views here.
+
+def busqueda_distribuidor(request):
+    return render(request,"AppTienda/busqueda_distribuidor.html")
+
+
+
+def buscar(request):
+    if request.GET["direccion"]:
+        direccion = request.GET["direccion"]
+        distribuidores = Distribuidores.objects.filter(direccion__icontains=direccion)
+        return render(request, 'AppTienda/distribuidores.html', {'distribuidores': distribuidores})
+    else:
+        return render(request, 'AppTienda/distribuidores.html', {'distribuidores': []})
+
+# Create your views here
