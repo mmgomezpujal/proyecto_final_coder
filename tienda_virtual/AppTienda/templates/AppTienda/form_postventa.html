@@ -1,11 +1,11 @@
 {% extends 'AppTienda/plantilla_base.html' %}
 {% block contenido_base %}
 
-<h1> Nuevo Cliente </h1> 
-
-<form action="/tienda-virtual/nuevo-cliente/" method="POST">{% csrf_token %}
+<h1> Nuevo Reclamo </h1> 
+       
+<form action="/tienda-virtual/post-venta/" method="POST">{% csrf_token %}
   
-    <table> {{ formulario_1.as_table }} </table>
+    <table> {{ formulario_3.as_table }} </table>
 
     <input type="submit" name="Enviar">
 
